@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MainTableViewCell.h
 //  VideoProcessKitTest
 //
 //  Created by Peter Hu on 2018/6/29.
@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewCell.h"
 
-@interface ViewController : UITableViewController
+@interface MainTableViewCell : BaseTableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *titleL;
 
 @end
-

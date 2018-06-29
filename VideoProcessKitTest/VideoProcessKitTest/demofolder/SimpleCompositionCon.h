@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SimpleCompositionCon.h
 //  VideoProcessKitTest
 //
 //  Created by Peter Hu on 2018/6/29.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UITableViewController
-
+@interface SimpleCompositionCon : UIViewController
 
 @end
-

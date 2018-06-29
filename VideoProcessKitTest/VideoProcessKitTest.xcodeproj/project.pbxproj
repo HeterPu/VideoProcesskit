@@ -15,6 +15,13 @@
 		DB31230520E5E1D100E26602 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB31230420E5E1D100E26602 /* main.m */; };
 		DB31230F20E5E1D200E26602 /* VideoProcessKitTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB31230E20E5E1D200E26602 /* VideoProcessKitTestTests.m */; };
 		DB31231A20E5E1D200E26602 /* VideoProcessKitTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DB31231920E5E1D200E26602 /* VideoProcessKitTestUITests.m */; };
+		DB31232920E5E9CD00E26602 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB31232820E5E9CD00E26602 /* BaseTableViewCell.m */; };
+		DB31232C20E5EA4700E26602 /* BaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB31232B20E5EA4700E26602 /* BaseTableCell.m */; };
+		DB31233020E5EAFE00E26602 /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB31232E20E5EAFE00E26602 /* MainTableViewCell.m */; };
+		DB31233120E5EAFE00E26602 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB31232F20E5EAFE00E26602 /* MainTableViewCell.xib */; };
+		DB31233620E60BD000E26602 /* SimpleCompositionCon.m in Sources */ = {isa = PBXBuildFile; fileRef = DB31233420E60BD000E26602 /* SimpleCompositionCon.m */; };
+		DB31233720E60BD000E26602 /* SimpleCompositionCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB31233520E60BD000E26602 /* SimpleCompositionCon.xib */; };
+		DB31233F20E624DE00E26602 /* VPKFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB31233E20E624DD00E26602 /* VPKFileManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +58,18 @@
 		DB31231520E5E1D200E26602 /* VideoProcessKitTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VideoProcessKitTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB31231920E5E1D200E26602 /* VideoProcessKitTestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoProcessKitTestUITests.m; sourceTree = "<group>"; };
 		DB31231B20E5E1D200E26602 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB31232720E5E9CD00E26602 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		DB31232820E5E9CD00E26602 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		DB31232A20E5EA4600E26602 /* BaseTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableCell.h; sourceTree = "<group>"; };
+		DB31232B20E5EA4700E26602 /* BaseTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableCell.m; sourceTree = "<group>"; };
+		DB31232D20E5EAFE00E26602 /* MainTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTableViewCell.h; sourceTree = "<group>"; };
+		DB31232E20E5EAFE00E26602 /* MainTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTableViewCell.m; sourceTree = "<group>"; };
+		DB31232F20E5EAFE00E26602 /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
+		DB31233320E60BD000E26602 /* SimpleCompositionCon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleCompositionCon.h; sourceTree = "<group>"; };
+		DB31233420E60BD000E26602 /* SimpleCompositionCon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleCompositionCon.m; sourceTree = "<group>"; };
+		DB31233520E60BD000E26602 /* SimpleCompositionCon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleCompositionCon.xib; sourceTree = "<group>"; };
+		DB31233D20E624DD00E26602 /* VPKFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPKFileManager.h; sourceTree = "<group>"; };
+		DB31233E20E624DD00E26602 /* VPKFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPKFileManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +120,12 @@
 		DB3122F420E5E1CD00E26602 /* VideoProcessKitTest */ = {
 			isa = PBXGroup;
 			children = (
+				DB31233820E6114B00E26602 /* VideoProcessKit */,
+				DB31233220E60B9200E26602 /* demofolder */,
+				DB31232A20E5EA4600E26602 /* BaseTableCell.h */,
+				DB31232B20E5EA4700E26602 /* BaseTableCell.m */,
+				DB31232720E5E9CD00E26602 /* BaseTableViewCell.h */,
+				DB31232820E5E9CD00E26602 /* BaseTableViewCell.m */,
 				DB3122F520E5E1CD00E26602 /* AppDelegate.h */,
 				DB3122F620E5E1CD00E26602 /* AppDelegate.m */,
 				DB3122F820E5E1CD00E26602 /* ViewController.h */,
@@ -110,6 +135,9 @@
 				DB31230020E5E1D100E26602 /* LaunchScreen.storyboard */,
 				DB31230320E5E1D100E26602 /* Info.plist */,
 				DB31230420E5E1D100E26602 /* main.m */,
+				DB31232D20E5EAFE00E26602 /* MainTableViewCell.h */,
+				DB31232E20E5EAFE00E26602 /* MainTableViewCell.m */,
+				DB31232F20E5EAFE00E26602 /* MainTableViewCell.xib */,
 			);
 			path = VideoProcessKitTest;
 			sourceTree = "<group>";
@@ -130,6 +158,41 @@
 				DB31231B20E5E1D200E26602 /* Info.plist */,
 			);
 			path = VideoProcessKitTestUITests;
+			sourceTree = "<group>";
+		};
+		DB31233220E60B9200E26602 /* demofolder */ = {
+			isa = PBXGroup;
+			children = (
+				DB31233320E60BD000E26602 /* SimpleCompositionCon.h */,
+				DB31233420E60BD000E26602 /* SimpleCompositionCon.m */,
+				DB31233520E60BD000E26602 /* SimpleCompositionCon.xib */,
+			);
+			path = demofolder;
+			sourceTree = "<group>";
+		};
+		DB31233820E6114B00E26602 /* VideoProcessKit */ = {
+			isa = PBXGroup;
+			children = (
+				DB31234020E6250200E26602 /* cores */,
+				DB31233C20E624DD00E26602 /* utils */,
+			);
+			path = VideoProcessKit;
+			sourceTree = "<group>";
+		};
+		DB31233C20E624DD00E26602 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				DB31233D20E624DD00E26602 /* VPKFileManager.h */,
+				DB31233E20E624DD00E26602 /* VPKFileManager.m */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		DB31234020E6250200E26602 /* cores */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = cores;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +300,8 @@
 			files = (
 				DB31230220E5E1D100E26602 /* LaunchScreen.storyboard in Resources */,
 				DB3122FF20E5E1D100E26602 /* Assets.xcassets in Resources */,
+				DB31233720E60BD000E26602 /* SimpleCompositionCon.xib in Resources */,
+				DB31233120E5EAFE00E26602 /* MainTableViewCell.xib in Resources */,
 				DB3122FD20E5E1CD00E26602 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,9 +327,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB31233020E5EAFE00E26602 /* MainTableViewCell.m in Sources */,
+				DB31232920E5E9CD00E26602 /* BaseTableViewCell.m in Sources */,
+				DB31233620E60BD000E26602 /* SimpleCompositionCon.m in Sources */,
 				DB3122FA20E5E1CD00E26602 /* ViewController.m in Sources */,
 				DB31230520E5E1D100E26602 /* main.m in Sources */,
+				DB31232C20E5EA4700E26602 /* BaseTableCell.m in Sources */,
 				DB3122F720E5E1CD00E26602 /* AppDelegate.m in Sources */,
+				DB31233F20E624DE00E26602 /* VPKFileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
