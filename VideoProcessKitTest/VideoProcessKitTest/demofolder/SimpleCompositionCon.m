@@ -43,11 +43,8 @@
     
     
     _manager = [[VPKCompositonManager alloc]init];
-    [_manager compositeWthVideoChannels:nil audioChannels:@[@[channel4,channel4]] outPutParh:output successBlock:^(NSURL *fileUrl) {
-        NSLog(@"the out put file is",fileUrl.path);
-    }];
-    [_manager setProgressBlock:^(CGFloat progress) {
-        
+    [_manager compositeWthVideoChannels:@[@[channel1,channel2,channel3]] audioChannels:nil outPutParh:output progressBlock:nil  successBlock:^(NSURL *fileUrl) {
+        NSLog(@"the out put file is%@",fileUrl.path);
     }];
     NSLog(@"");
     // Do any additional setup after loading the view from its nib.

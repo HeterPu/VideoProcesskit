@@ -39,7 +39,16 @@
 @property(nonatomic,assign) CMTimeRange  maxTimeRange;
 
 @property(nonatomic,strong) AVMutableComposition  *composition;
+/**
+ 进度block
+ */
+@property (nonatomic,copy)VPK_CompositionProgress progressBlock;
 
+
+/**
+ 标识是否为纯音频合成
+ */
+@property(nonatomic,assign) BOOL isPureAudioComposite;
 
 @end
 
@@ -51,9 +60,13 @@
 -(void)compositeWthVideoChannels:(NSArray<NSArray< VPKCompositonChannel *> *> *) videoChannels
                    audioChannels:(NSArray<NSArray< VPKCompositonChannel *> *> *)audioChannels
                       outPutParh:(NSString *)path
+                   progressBlock:(VPK_CompositionProgress)progressBlock
                     successBlock:(VPK_CompositeSuccessBlcok)successBlock{
     
-    if([VPKFileManager isFileExistOfPath:path])return;
+    if([VPKFileManager isFileExistOfPath:path]){
+        NSLog(@"输出路径已存在,不可用");
+        return;
+    }
     __weak typeof (self)  weak_self;
     
     // 移除现有通道
@@ -70,6 +83,8 @@
     BOOL hasAudioChannel = false;
     if(videoChannels&&videoChannels.count > 0)hasVideoChannel = true;
      if(audioChannels&&audioChannels.count > 0)hasAudioChannel = true;
+    
+    _isPureAudioComposite = !hasVideoChannel;
     
     if(hasVideoChannel){
         for (int i = 0; i < videoChannels.count;i++) {
@@ -116,33 +131,14 @@
               }
           }
     }
-
-//    for (int i = 0; i < videoChannels.count; i++) {
-//        VPKCompositonChannel *channel = videoChannels[videoChannels.count - i - 1];
-//        AVURLAsset *fileAsset = [[AVURLAsset alloc] initWithURL:channel.fileUrl options:nil];
-//        CMTimeRange  fileTimeRange = [self fitTimeRange:channel.range avUrlAsset:fileAsset];
-//        if(CMTimeCompare(CMTimeAdd(fileTimeRange.start, fileTimeRange.duration),_maxTimeRange.duration)){
-//            _maxTimeRange.duration = CMTimeAdd(fileTimeRange.start, fileTimeRange.duration);
-//        }
-//
-//        // 增加视频通道
-//        if (channel.mediaType == AVMediaTypeVideo) {
-//            // 视频采集通道
-//           AVAssetTrack *videoAssetTrack = [[fileAsset tracksWithMediaType:AVMediaTypeVideo] firstObject];
-//            // 把采集轨道数据加入到可变轨道之中
-//            [videoTrack insertTimeRange:fileTimeRange ofTrack:videoAssetTrack atTime:fileTimeRange.start error:nil];
-//            // 音频采集通道
-//            AVAssetTrack *audioAssetTrack = [[fileAsset tracksWithMediaType:AVMediaTypeAudio] firstObject];
-//            // 加入合成轨道之中
-//            [audioTrack insertTimeRange:fileTimeRange ofTrack:audioAssetTrack atTime:fileTimeRange.start error:nil];
-//        }
-//      }
-//    }
     
     
     //增加音频通道
-    
-    [self composition:_composition storePath:path success:successBlock];
+    if (hasAudioChannel||hasVideoChannel) {
+        [self composition:_composition storePath:path progressBlock:progressBlock success:successBlock];
+    }else{
+         NSLog(@"无视频和音频轨道");
+    }
 }
 
 
@@ -150,13 +146,19 @@
 //输出
 - (void)composition:(AVMutableComposition *)avComposition
           storePath:(NSString *)storePath
+      progressBlock:(VPK_CompositionProgress)progressBlock
             success:(VPK_CompositeSuccessBlcok)successBlcok
 {
+    AVMutableVideoComposition
+    // 如果为音频默认输出为m4a格式,视频默认为MP4格式
+    NSString *exportType  = self.presetName;
+    if(!exportType)exportType = _isPureAudioComposite ? AVAssetExportPresetAppleM4A : AVAssetExportPresetHighestQuality;
+
+    NSString *outputType = self.outputFileType;
+    if(!outputType)outputType = _isPureAudioComposite ? AVFileTypeAppleM4A : AVFileTypeMPEG4;
     // 创建一个输出
-    AVAssetExportSession *assetExport = [[AVAssetExportSession alloc] initWithAsset:avComposition presetName:AVAssetExportPresetHighestQuality];
-    
-    // MP3  AVFileTypeAppleM4A
-    assetExport.outputFileType = AVFileTypeMPEG4;
+    AVAssetExportSession *assetExport = [[AVAssetExportSession alloc] initWithAsset:avComposition presetName:exportType];
+    assetExport.outputFileType = outputType;
     // 输出地址
     assetExport.outputURL = [NSURL fileURLWithPath:storePath];
     // 优化
@@ -166,8 +168,8 @@
     
     timer = [NSTimer scheduledTimerWithTimeInterval:0.20 repeats:YES block:^(NSTimer * _Nonnull timer) {
         NSLog(@" 打印信息:%f",assetExport.progress);
-        if (self.progressBlock) {
-            self.progressBlock(assetExport.progress);
+        if (progressBlock) {
+            progressBlock(assetExport.progress);
         }
     }];
     
@@ -232,6 +234,8 @@
     }
     return _composition;
 }
+
+
 
 
 
