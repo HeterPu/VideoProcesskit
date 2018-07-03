@@ -38,10 +38,10 @@
 
 
 
-+(BOOL)isFileExistOfPath:(NSString *)filePath{
++(BOOL)isFileExistOfPath:(NSString *)filepath{
     BOOL flag = NO;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:filePath]) {
+    if ([fileManager fileExistsAtPath:filepath]) {
         flag = YES;
     } else {
         flag = NO;

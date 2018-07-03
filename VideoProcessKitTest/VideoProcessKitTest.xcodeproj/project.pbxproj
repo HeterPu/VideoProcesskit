@@ -22,6 +22,13 @@
 		DB31233620E60BD000E26602 /* SimpleCompositionCon.m in Sources */ = {isa = PBXBuildFile; fileRef = DB31233420E60BD000E26602 /* SimpleCompositionCon.m */; };
 		DB31233720E60BD000E26602 /* SimpleCompositionCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB31233520E60BD000E26602 /* SimpleCompositionCon.xib */; };
 		DB31233F20E624DE00E26602 /* VPKFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB31233E20E624DD00E26602 /* VPKFileManager.m */; };
+		DB6FF88A20EA0F7D006956AE /* VPKCompositonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6FF88920EA0F7D006956AE /* VPKCompositonManager.m */; };
+		DB6FF89120EA3DB0006956AE /* MFwf6J.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DB6FF88F20EA3DB0006956AE /* MFwf6J.mp4 */; };
+		DB6FF89220EA3DB0006956AE /* XnzwQF.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DB6FF89020EA3DB0006956AE /* XnzwQF.mp4 */; };
+		DB6FF89520EA46C3006956AE /* dVIlx3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DB6FF89320EA46C2006956AE /* dVIlx3.mp4 */; };
+		DB6FF89620EA46C3006956AE /* T9tONp.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DB6FF89420EA46C3006956AE /* T9tONp.mp4 */; };
+		DB6FF89820EA47E6006956AE /* 123.MOV in Resources */ = {isa = PBXBuildFile; fileRef = DB6FF89720EA47E6006956AE /* 123.MOV */; };
+		DB6FF89A20EA48DF006956AE /* 123.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DB6FF89920EA48DF006956AE /* 123.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +77,14 @@
 		DB31233520E60BD000E26602 /* SimpleCompositionCon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleCompositionCon.xib; sourceTree = "<group>"; };
 		DB31233D20E624DD00E26602 /* VPKFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPKFileManager.h; sourceTree = "<group>"; };
 		DB31233E20E624DD00E26602 /* VPKFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPKFileManager.m; sourceTree = "<group>"; };
+		DB6FF88820EA0F7D006956AE /* VPKCompositonManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VPKCompositonManager.h; sourceTree = "<group>"; };
+		DB6FF88920EA0F7D006956AE /* VPKCompositonManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VPKCompositonManager.m; sourceTree = "<group>"; };
+		DB6FF88F20EA3DB0006956AE /* MFwf6J.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = MFwf6J.mp4; sourceTree = "<group>"; };
+		DB6FF89020EA3DB0006956AE /* XnzwQF.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = XnzwQF.mp4; sourceTree = "<group>"; };
+		DB6FF89320EA46C2006956AE /* dVIlx3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = dVIlx3.mp4; sourceTree = "<group>"; };
+		DB6FF89420EA46C3006956AE /* T9tONp.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = T9tONp.mp4; sourceTree = "<group>"; };
+		DB6FF89720EA47E6006956AE /* 123.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = 123.MOV; sourceTree = "<group>"; };
+		DB6FF89920EA48DF006956AE /* 123.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 123.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +135,12 @@
 		DB3122F420E5E1CD00E26602 /* VideoProcessKitTest */ = {
 			isa = PBXGroup;
 			children = (
+				DB6FF89920EA48DF006956AE /* 123.mp3 */,
+				DB6FF89720EA47E6006956AE /* 123.MOV */,
+				DB6FF88F20EA3DB0006956AE /* MFwf6J.mp4 */,
+				DB6FF89020EA3DB0006956AE /* XnzwQF.mp4 */,
+				DB6FF89320EA46C2006956AE /* dVIlx3.mp4 */,
+				DB6FF89420EA46C3006956AE /* T9tONp.mp4 */,
 				DB31233820E6114B00E26602 /* VideoProcessKit */,
 				DB31233220E60B9200E26602 /* demofolder */,
 				DB31232A20E5EA4600E26602 /* BaseTableCell.h */,
@@ -191,6 +212,8 @@
 		DB31234020E6250200E26602 /* cores */ = {
 			isa = PBXGroup;
 			children = (
+				DB6FF88820EA0F7D006956AE /* VPKCompositonManager.h */,
+				DB6FF88920EA0F7D006956AE /* VPKCompositonManager.m */,
 			);
 			path = cores;
 			sourceTree = "<group>";
@@ -299,9 +322,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB31230220E5E1D100E26602 /* LaunchScreen.storyboard in Resources */,
+				DB6FF89120EA3DB0006956AE /* MFwf6J.mp4 in Resources */,
 				DB3122FF20E5E1D100E26602 /* Assets.xcassets in Resources */,
+				DB6FF89820EA47E6006956AE /* 123.MOV in Resources */,
+				DB6FF89520EA46C3006956AE /* dVIlx3.mp4 in Resources */,
 				DB31233720E60BD000E26602 /* SimpleCompositionCon.xib in Resources */,
 				DB31233120E5EAFE00E26602 /* MainTableViewCell.xib in Resources */,
+				DB6FF89220EA3DB0006956AE /* XnzwQF.mp4 in Resources */,
+				DB6FF89A20EA48DF006956AE /* 123.mp3 in Resources */,
+				DB6FF89620EA46C3006956AE /* T9tONp.mp4 in Resources */,
 				DB3122FD20E5E1CD00E26602 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +359,7 @@
 				DB31233020E5EAFE00E26602 /* MainTableViewCell.m in Sources */,
 				DB31232920E5E9CD00E26602 /* BaseTableViewCell.m in Sources */,
 				DB31233620E60BD000E26602 /* SimpleCompositionCon.m in Sources */,
+				DB6FF88A20EA0F7D006956AE /* VPKCompositonManager.m in Sources */,
 				DB3122FA20E5E1CD00E26602 /* ViewController.m in Sources */,
 				DB31230520E5E1D100E26602 /* main.m in Sources */,
 				DB31232C20E5EA4700E26602 /* BaseTableCell.m in Sources */,

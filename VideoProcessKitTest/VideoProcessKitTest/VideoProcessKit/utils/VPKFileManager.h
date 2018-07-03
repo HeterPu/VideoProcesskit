@@ -49,15 +49,15 @@
  */
 +(NSString *)getApplicationPath;
 
-#pragma mark - File Manupulation
 
+#pragma mark - File Manupulation
 
 
 /**
   文件在某个路径是否存在
  @param filepath 文件路径
  */
-+（BOOL）isFileExistOfPath:(NSString *)filepath;
++(BOOL)isFileExistOfPath:(NSString *)filepath;
 
 
 
@@ -66,7 +66,7 @@
  @param filepath 文件路径
  @return 是否移除成功
  */
-+(BOOL) removeFileOfPath:(NSString *)filepath;
++(BOOL)removeFileOfPath:(NSString *)filepath;
 
 
 
