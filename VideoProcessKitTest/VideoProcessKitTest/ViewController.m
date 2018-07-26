@@ -83,16 +83,16 @@
 
 
 -(NSArray *)getHeader{
-    return @[@"Video Composition",@"Audio Composition"];
+    return @[@"Video Composition",@"Audio Composition",@"Watermarks"];
 }
 
 -(NSArray <NSArray *>*)getSubTitleArray{
-    return @[@[@"VideoSimpleComposition",@"VideoComplexComposition"],@[@"AudioSimpleComposition",@"AudioComplexComposition"]];
+    return @[@[@"VideoSimpleComposition",@"VideoComplexComposition"],@[@"AudioSimpleComposition",@"AudioComplexComposition"],@[@"VideoSimpleWatermark",@"VideoComplexWatermark"]];
 }
 
 
 -(NSArray *)selArra{
-     return @[@[@"SimpleCompositionCon",@"SimpleCompositionCon"],@[@"SimpleCompositionCon",@"SimpleCompositionCon"]];
+    return @[@[@"SimpleCompositionCon",@"SimpleCompositionCon"],@[@"SimpleCompositionCon",@"SimpleCompositionCon"],@[@"videoWatermarksCon",@"videoWatermarksCon"]];
 }
 
 

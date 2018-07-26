@@ -149,7 +149,7 @@
       progressBlock:(VPK_CompositionProgress)progressBlock
             success:(VPK_CompositeSuccessBlcok)successBlcok
 {
-    AVMutableVideoComposition
+    
     // 如果为音频默认输出为m4a格式,视频默认为MP4格式
     NSString *exportType  = self.presetName;
     if(!exportType)exportType = _isPureAudioComposite ? AVAssetExportPresetAppleM4A : AVAssetExportPresetHighestQuality;

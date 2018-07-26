@@ -29,6 +29,21 @@
 		DB6FF89620EA46C3006956AE /* T9tONp.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DB6FF89420EA46C3006956AE /* T9tONp.mp4 */; };
 		DB6FF89820EA47E6006956AE /* 123.MOV in Resources */ = {isa = PBXBuildFile; fileRef = DB6FF89720EA47E6006956AE /* 123.MOV */; };
 		DB6FF89A20EA48DF006956AE /* 123.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DB6FF89920EA48DF006956AE /* 123.mp3 */; };
+		DB7DBF062108932100C5393F /* videoWatermarksCon.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7DBF042108932100C5393F /* videoWatermarksCon.m */; };
+		DB7DBF072108932100C5393F /* videoWatermarksCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB7DBF052108932100C5393F /* videoWatermarksCon.xib */; };
+		DB7DBF0C2109617B00C5393F /* BaseWaterMarkCon.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7DBF0A2109617B00C5393F /* BaseWaterMarkCon.m */; };
+		DB7DBF0D2109617B00C5393F /* BaseWaterMarkCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB7DBF0B2109617B00C5393F /* BaseWaterMarkCon.xib */; };
+		DB7DBF14210969DB00C5393F /* AddBorderCon.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7DBF12210969DB00C5393F /* AddBorderCon.m */; };
+		DB7DBF15210969DB00C5393F /* AddBorderCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB7DBF13210969DB00C5393F /* AddBorderCon.xib */; };
+		DB7DBF19210972D400C5393F /* AddOverLayerCon.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7DBF17210972D400C5393F /* AddOverLayerCon.m */; };
+		DB7DBF1A210972D400C5393F /* AddOverLayerCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB7DBF18210972D400C5393F /* AddOverLayerCon.xib */; };
+		DB7DBF1C2109752900C5393F /* layer.png in Resources */ = {isa = PBXBuildFile; fileRef = DB7DBF1B2109752900C5393F /* layer.png */; };
+		DB7DBF20210976C200C5393F /* AddSubtitleCon.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7DBF1E210976C200C5393F /* AddSubtitleCon.m */; };
+		DB7DBF21210976C200C5393F /* AddSubtitleCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB7DBF1F210976C200C5393F /* AddSubtitleCon.xib */; };
+		DB7DBF2521099D0B00C5393F /* AddTiltCon.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7DBF2321099D0B00C5393F /* AddTiltCon.m */; };
+		DB7DBF2621099D0B00C5393F /* AddTiltCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB7DBF2421099D0B00C5393F /* AddTiltCon.xib */; };
+		DB7DBF2A2109A37B00C5393F /* AddAnimationCon.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7DBF282109A37B00C5393F /* AddAnimationCon.m */; };
+		DB7DBF2B2109A37B00C5393F /* AddAnimationCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB7DBF292109A37B00C5393F /* AddAnimationCon.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +100,28 @@
 		DB6FF89420EA46C3006956AE /* T9tONp.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = T9tONp.mp4; sourceTree = "<group>"; };
 		DB6FF89720EA47E6006956AE /* 123.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = 123.MOV; sourceTree = "<group>"; };
 		DB6FF89920EA48DF006956AE /* 123.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 123.mp3; sourceTree = "<group>"; };
+		DB7DBF032108932100C5393F /* videoWatermarksCon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoWatermarksCon.h; sourceTree = "<group>"; };
+		DB7DBF042108932100C5393F /* videoWatermarksCon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoWatermarksCon.m; sourceTree = "<group>"; };
+		DB7DBF052108932100C5393F /* videoWatermarksCon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = videoWatermarksCon.xib; sourceTree = "<group>"; };
+		DB7DBF092109617B00C5393F /* BaseWaterMarkCon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseWaterMarkCon.h; sourceTree = "<group>"; };
+		DB7DBF0A2109617B00C5393F /* BaseWaterMarkCon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseWaterMarkCon.m; sourceTree = "<group>"; };
+		DB7DBF0B2109617B00C5393F /* BaseWaterMarkCon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseWaterMarkCon.xib; sourceTree = "<group>"; };
+		DB7DBF11210969DB00C5393F /* AddBorderCon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddBorderCon.h; sourceTree = "<group>"; };
+		DB7DBF12210969DB00C5393F /* AddBorderCon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddBorderCon.m; sourceTree = "<group>"; };
+		DB7DBF13210969DB00C5393F /* AddBorderCon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddBorderCon.xib; sourceTree = "<group>"; };
+		DB7DBF16210972D400C5393F /* AddOverLayerCon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddOverLayerCon.h; sourceTree = "<group>"; };
+		DB7DBF17210972D400C5393F /* AddOverLayerCon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddOverLayerCon.m; sourceTree = "<group>"; };
+		DB7DBF18210972D400C5393F /* AddOverLayerCon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddOverLayerCon.xib; sourceTree = "<group>"; };
+		DB7DBF1B2109752900C5393F /* layer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = layer.png; sourceTree = "<group>"; };
+		DB7DBF1D210976C200C5393F /* AddSubtitleCon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddSubtitleCon.h; sourceTree = "<group>"; };
+		DB7DBF1E210976C200C5393F /* AddSubtitleCon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddSubtitleCon.m; sourceTree = "<group>"; };
+		DB7DBF1F210976C200C5393F /* AddSubtitleCon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddSubtitleCon.xib; sourceTree = "<group>"; };
+		DB7DBF2221099D0B00C5393F /* AddTiltCon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddTiltCon.h; sourceTree = "<group>"; };
+		DB7DBF2321099D0B00C5393F /* AddTiltCon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTiltCon.m; sourceTree = "<group>"; };
+		DB7DBF2421099D0B00C5393F /* AddTiltCon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTiltCon.xib; sourceTree = "<group>"; };
+		DB7DBF272109A37B00C5393F /* AddAnimationCon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAnimationCon.h; sourceTree = "<group>"; };
+		DB7DBF282109A37B00C5393F /* AddAnimationCon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAnimationCon.m; sourceTree = "<group>"; };
+		DB7DBF292109A37B00C5393F /* AddAnimationCon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAnimationCon.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +172,7 @@
 		DB3122F420E5E1CD00E26602 /* VideoProcessKitTest */ = {
 			isa = PBXGroup;
 			children = (
+				DB7DBF1B2109752900C5393F /* layer.png */,
 				DB6FF89920EA48DF006956AE /* 123.mp3 */,
 				DB6FF89720EA47E6006956AE /* 123.MOV */,
 				DB6FF88F20EA3DB0006956AE /* MFwf6J.mp4 */,
@@ -184,9 +222,13 @@
 		DB31233220E60B9200E26602 /* demofolder */ = {
 			isa = PBXGroup;
 			children = (
+				DB7DBF082109613C00C5393F /* WaterMarkCon */,
 				DB31233320E60BD000E26602 /* SimpleCompositionCon.h */,
 				DB31233420E60BD000E26602 /* SimpleCompositionCon.m */,
 				DB31233520E60BD000E26602 /* SimpleCompositionCon.xib */,
+				DB7DBF032108932100C5393F /* videoWatermarksCon.h */,
+				DB7DBF042108932100C5393F /* videoWatermarksCon.m */,
+				DB7DBF052108932100C5393F /* videoWatermarksCon.xib */,
 			);
 			path = demofolder;
 			sourceTree = "<group>";
@@ -216,6 +258,31 @@
 				DB6FF88920EA0F7D006956AE /* VPKCompositonManager.m */,
 			);
 			path = cores;
+			sourceTree = "<group>";
+		};
+		DB7DBF082109613C00C5393F /* WaterMarkCon */ = {
+			isa = PBXGroup;
+			children = (
+				DB7DBF092109617B00C5393F /* BaseWaterMarkCon.h */,
+				DB7DBF0A2109617B00C5393F /* BaseWaterMarkCon.m */,
+				DB7DBF0B2109617B00C5393F /* BaseWaterMarkCon.xib */,
+				DB7DBF11210969DB00C5393F /* AddBorderCon.h */,
+				DB7DBF12210969DB00C5393F /* AddBorderCon.m */,
+				DB7DBF13210969DB00C5393F /* AddBorderCon.xib */,
+				DB7DBF16210972D400C5393F /* AddOverLayerCon.h */,
+				DB7DBF17210972D400C5393F /* AddOverLayerCon.m */,
+				DB7DBF18210972D400C5393F /* AddOverLayerCon.xib */,
+				DB7DBF1D210976C200C5393F /* AddSubtitleCon.h */,
+				DB7DBF1E210976C200C5393F /* AddSubtitleCon.m */,
+				DB7DBF1F210976C200C5393F /* AddSubtitleCon.xib */,
+				DB7DBF2221099D0B00C5393F /* AddTiltCon.h */,
+				DB7DBF2321099D0B00C5393F /* AddTiltCon.m */,
+				DB7DBF2421099D0B00C5393F /* AddTiltCon.xib */,
+				DB7DBF272109A37B00C5393F /* AddAnimationCon.h */,
+				DB7DBF282109A37B00C5393F /* AddAnimationCon.m */,
+				DB7DBF292109A37B00C5393F /* AddAnimationCon.xib */,
+			);
+			path = WaterMarkCon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,6 +388,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB7DBF1A210972D400C5393F /* AddOverLayerCon.xib in Resources */,
 				DB31230220E5E1D100E26602 /* LaunchScreen.storyboard in Resources */,
 				DB6FF89120EA3DB0006956AE /* MFwf6J.mp4 in Resources */,
 				DB3122FF20E5E1D100E26602 /* Assets.xcassets in Resources */,
@@ -328,8 +396,15 @@
 				DB6FF89520EA46C3006956AE /* dVIlx3.mp4 in Resources */,
 				DB31233720E60BD000E26602 /* SimpleCompositionCon.xib in Resources */,
 				DB31233120E5EAFE00E26602 /* MainTableViewCell.xib in Resources */,
+				DB7DBF072108932100C5393F /* videoWatermarksCon.xib in Resources */,
+				DB7DBF1C2109752900C5393F /* layer.png in Resources */,
+				DB7DBF15210969DB00C5393F /* AddBorderCon.xib in Resources */,
 				DB6FF89220EA3DB0006956AE /* XnzwQF.mp4 in Resources */,
 				DB6FF89A20EA48DF006956AE /* 123.mp3 in Resources */,
+				DB7DBF2621099D0B00C5393F /* AddTiltCon.xib in Resources */,
+				DB7DBF2B2109A37B00C5393F /* AddAnimationCon.xib in Resources */,
+				DB7DBF21210976C200C5393F /* AddSubtitleCon.xib in Resources */,
+				DB7DBF0D2109617B00C5393F /* BaseWaterMarkCon.xib in Resources */,
 				DB6FF89620EA46C3006956AE /* T9tONp.mp4 in Resources */,
 				DB3122FD20E5E1CD00E26602 /* Main.storyboard in Resources */,
 			);
@@ -359,11 +434,18 @@
 				DB31233020E5EAFE00E26602 /* MainTableViewCell.m in Sources */,
 				DB31232920E5E9CD00E26602 /* BaseTableViewCell.m in Sources */,
 				DB31233620E60BD000E26602 /* SimpleCompositionCon.m in Sources */,
+				DB7DBF062108932100C5393F /* videoWatermarksCon.m in Sources */,
+				DB7DBF14210969DB00C5393F /* AddBorderCon.m in Sources */,
+				DB7DBF2A2109A37B00C5393F /* AddAnimationCon.m in Sources */,
+				DB7DBF0C2109617B00C5393F /* BaseWaterMarkCon.m in Sources */,
 				DB6FF88A20EA0F7D006956AE /* VPKCompositonManager.m in Sources */,
 				DB3122FA20E5E1CD00E26602 /* ViewController.m in Sources */,
+				DB7DBF20210976C200C5393F /* AddSubtitleCon.m in Sources */,
+				DB7DBF19210972D400C5393F /* AddOverLayerCon.m in Sources */,
 				DB31230520E5E1D100E26602 /* main.m in Sources */,
 				DB31232C20E5EA4700E26602 /* BaseTableCell.m in Sources */,
 				DB3122F720E5E1CD00E26602 /* AppDelegate.m in Sources */,
+				DB7DBF2521099D0B00C5393F /* AddTiltCon.m in Sources */,
 				DB31233F20E624DE00E26602 /* VPKFileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
