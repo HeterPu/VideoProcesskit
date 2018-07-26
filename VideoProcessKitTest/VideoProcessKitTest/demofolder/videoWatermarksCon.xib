@@ -64,6 +64,9 @@
                     <rect key="frame" x="71" y="370" width="203" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Add Animation with Lottie"/>
+                    <connections>
+                        <action selector="lottieClick:" destination="-1" eventType="touchUpInside" id="mZt-ju-sKm"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

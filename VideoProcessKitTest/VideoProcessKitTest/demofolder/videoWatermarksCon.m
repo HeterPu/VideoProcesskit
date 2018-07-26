@@ -12,6 +12,7 @@
 #import "AddSubtitleCon.h"
 #import "AddTiltCon.h"
 #import "AddAnimationCon.h"
+#import "AddLottieViewCon.h"
 
 @interface videoWatermarksCon ()
 
@@ -47,6 +48,14 @@
     AddAnimationCon *con = [[AddAnimationCon alloc]init];
     [self.navigationController pushViewController:con animated:true];
 }
+
+
+- (IBAction)lottieClick:(id)sender {
+    AddLottieViewCon *con = [[AddLottieViewCon alloc]init];
+    [self.navigationController pushViewController:con animated:true];
+}
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
