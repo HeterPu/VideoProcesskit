@@ -7,6 +7,7 @@
 //
 
 #import "AddBorderCon.h"
+#import "VPKCompositonManager.h"
 
 @interface AddBorderCon ()
 

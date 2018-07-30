@@ -86,9 +86,7 @@
 {
     // 1 - Early exit if there's no video file selected
     if (!self.videoAsset) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please Load a Video Asset First"
-                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [CustomAlertView showFailMessage:@"Select a video" delay:1.0 complete:nil];
         return;
     }
     
@@ -195,13 +193,9 @@
             [library writeVideoAtPathToSavedPhotosAlbum:outputURL completionBlock:^(NSURL *assetURL, NSError *error){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (error) {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed"
-                                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                        [alert show];
+                        [CustomAlertView showFailMessage:@"Video Saving Failed" delay:1.0 complete:nil];
                     } else {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Saved" message:@"Saved To Photo Album"
-                                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                        [alert show];
+                         [CustomAlertView showSuccessMessage:@"Video Saved" delay:1.0 complete:nil];
                     }
                 });
             }];

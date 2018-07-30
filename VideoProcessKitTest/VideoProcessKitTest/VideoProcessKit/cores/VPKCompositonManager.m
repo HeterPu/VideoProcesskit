@@ -8,6 +8,7 @@
 
 #import "VPKCompositonManager.h"
 #import "VPKFileManager.h"
+#import <UIKit/UIKit.h>
 
 
 
@@ -39,11 +40,6 @@
 @property(nonatomic,assign) CMTimeRange  maxTimeRange;
 
 @property(nonatomic,strong) AVMutableComposition  *composition;
-/**
- 进度block
- */
-@property (nonatomic,copy)VPK_CompositionProgress progressBlock;
-
 
 /**
  标识是否为纯音频合成
@@ -60,8 +56,8 @@
 -(void)compositeWthVideoChannels:(NSArray<NSArray< VPKCompositonChannel *> *> *) videoChannels
                    audioChannels:(NSArray<NSArray< VPKCompositonChannel *> *> *)audioChannels
                       outPutParh:(NSString *)path
-                   progressBlock:(VPK_CompositionProgress)progressBlock
-                    successBlock:(VPK_CompositeSuccessBlcok)successBlock{
+                   progressBlock:(VPK_Compos_Progress)progressBlock
+                    successBlock:(VPK_Compos_Success)successBlock{
     
     if([VPKFileManager isFileExistOfPath:path]){
         NSLog(@"输出路径已存在,不可用");
@@ -146,16 +142,17 @@
 //输出
 - (void)composition:(AVMutableComposition *)avComposition
           storePath:(NSString *)storePath
-      progressBlock:(VPK_CompositionProgress)progressBlock
-            success:(VPK_CompositeSuccessBlcok)successBlcok
+      progressBlock:(VPK_Compos_Progress)progressBlock
+            success:(VPK_Compos_Success)successBlcok
 {
     
     // 如果为音频默认输出为m4a格式,视频默认为MP4格式
     NSString *exportType  = self.presetName;
     if(!exportType)exportType = _isPureAudioComposite ? AVAssetExportPresetAppleM4A : AVAssetExportPresetHighestQuality;
-
+    
     NSString *outputType = self.outputFileType;
     if(!outputType)outputType = _isPureAudioComposite ? AVFileTypeAppleM4A : AVFileTypeMPEG4;
+    
     // 创建一个输出
     AVAssetExportSession *assetExport = [[AVAssetExportSession alloc] initWithAsset:avComposition presetName:exportType];
     assetExport.outputFileType = outputType;
@@ -233,6 +230,159 @@
         _composition = [AVMutableComposition composition];
     }
     return _composition;
+}
+
+
+
+
+-(void)innnerCompositeWithChannel:(VPKCompositonChannel *)singleChannel
+                       outPutPath:(NSString *)path
+                    configuration:(VPK_Inner_Compos_Config)configuration
+                    progressBlock:(VPK_Compos_Progress)progressBlock
+                         complete:(VPK_Compos_Success)successBlock
+{
+    
+    
+    AVAsset *videoAsset = [AVAsset assetWithURL:singleChannel.fileUrl];
+    // 1 - Early exit if there's no video file selected
+    if (!videoAsset) {
+        NSLog(@"合成资源不存在");
+        return;
+    }
+    
+    // 2 - Create AVMutableComposition object. This object will hold your AVMutableCompositionTrack instances.
+    AVMutableComposition *mixComposition = [[AVMutableComposition alloc] init];
+    
+    // 3 - Video track
+    AVMutableCompositionTrack *videoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo
+                                                                        preferredTrackID:kCMPersistentTrackID_Invalid];
+    
+    
+    [videoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAsset.duration)
+                        ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0]
+                         atTime:kCMTimeZero error:nil];
+    
+    
+    if([videoAsset tracksWithMediaType:AVMediaTypeAudio].count != 0){
+        
+        // 没有音轨就不要创建，不然创建了不加会生成不出来
+        AVMutableCompositionTrack  *audioTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+        [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAsset.duration)
+                            ofTrack:[[videoAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0]
+                             atTime:kCMTimeZero error:nil];
+    }
+    
+    // 3.1 - Create AVMutableVideoCompositionInstruction
+    AVMutableVideoCompositionInstruction *mainInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
+    mainInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, videoAsset.duration);
+    
+    // 3.2 - Create an AVMutableVideoCompositionLayerInstruction for the video track and fix the orientation.
+    AVMutableVideoCompositionLayerInstruction *videolayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];
+    AVAssetTrack *videoAssetTrack = [[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+    UIImageOrientation videoAssetOrientation_  = UIImageOrientationUp;
+    BOOL isVideoAssetPortrait_  = NO;
+    CGAffineTransform videoTransform = videoAssetTrack.preferredTransform;
+    if (videoTransform.a == 0 && videoTransform.b == 1.0 && videoTransform.c == -1.0 && videoTransform.d == 0) {
+        videoAssetOrientation_ = UIImageOrientationRight;
+        isVideoAssetPortrait_ = YES;
+    }
+    if (videoTransform.a == 0 && videoTransform.b == -1.0 && videoTransform.c == 1.0 && videoTransform.d == 0) {
+        videoAssetOrientation_ =  UIImageOrientationLeft;
+        isVideoAssetPortrait_ = YES;
+    }
+    if (videoTransform.a == 1.0 && videoTransform.b == 0 && videoTransform.c == 0 && videoTransform.d == 1.0) {
+        videoAssetOrientation_ =  UIImageOrientationUp;
+    }
+    if (videoTransform.a == -1.0 && videoTransform.b == 0 && videoTransform.c == 0 && videoTransform.d == -1.0) {
+        videoAssetOrientation_ = UIImageOrientationDown;
+    }
+    [videolayerInstruction setTransform:videoAssetTrack.preferredTransform atTime:kCMTimeZero];
+    [videolayerInstruction setOpacity:0.0 atTime:videoAsset.duration];
+    
+    // 3.3 - Add instructions
+    mainInstruction.layerInstructions = [NSArray arrayWithObjects:videolayerInstruction,nil];
+    
+    AVMutableVideoComposition *mainCompositionInst = [AVMutableVideoComposition videoComposition];
+    
+    CGSize naturalSize;
+    if(isVideoAssetPortrait_){
+        naturalSize = CGSizeMake(videoAssetTrack.naturalSize.height, videoAssetTrack.naturalSize.width);
+    } else {
+        naturalSize = videoAssetTrack.naturalSize;
+    }
+    
+    float renderWidth, renderHeight;
+    renderWidth = naturalSize.width;
+    renderHeight = naturalSize.height;
+    mainCompositionInst.renderSize = CGSizeMake(renderWidth, renderHeight);
+    mainCompositionInst.instructions = [NSArray arrayWithObject:mainInstruction];
+    
+    // 设定帧率
+    mainCompositionInst.frameDuration = CMTimeMake(1, 30);
+    
+    
+    __weak typeof(AVMutableVideoComposition) *weakComposition = mainCompositionInst;
+    
+    // 配置动画参数
+    if(configuration){
+        configuration(weakComposition,naturalSize);
+    }
+    
+    // 4 - Get path
+    NSURL *url = [NSURL fileURLWithPath:path];
+    
+    // 5 - Create exporter
+    AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:mixComposition
+                                                                      presetName:AVAssetExportPresetHighestQuality];
+    exporter.outputURL=url;
+    exporter.outputFileType = AVFileTypeQuickTimeMovie;
+    exporter.shouldOptimizeForNetworkUse = YES;
+    exporter.videoComposition = mainCompositionInst;
+    
+
+    __block NSTimer *timer = nil;
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.20 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        NSLog(@" 打印信息:%f",exporter.progress);
+        if (progressBlock) {
+            progressBlock(exporter.progress);
+        }
+    }];
+    
+    // 合成完毕
+    [exporter exportAsynchronouslyWithCompletionHandler:^{
+        if (timer) {
+            [timer invalidate];
+            timer = nil;
+        }
+        // 回到主线程
+        switch (exporter.status) {
+                case AVAssetExportSessionStatusUnknown:
+                NSLog(@"exporter Unknow");
+                break;
+                case AVAssetExportSessionStatusCancelled:
+                NSLog(@"exporter Canceled");
+                break;
+                case AVAssetExportSessionStatusFailed:
+                NSLog(@"%@", [NSString stringWithFormat:@"exporter Failed%@",exporter.error.description]);
+                break;
+                case AVAssetExportSessionStatusWaiting:
+                NSLog(@"exporter Waiting");
+                break;
+                case AVAssetExportSessionStatusExporting:
+                NSLog(@"exporter Exporting");
+                break;
+                case AVAssetExportSessionStatusCompleted:
+                NSLog(@"exporter Completed");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // 调用播放方法
+                    if(successBlock)successBlock([NSURL fileURLWithPath:path]);
+                });
+                break;
+        }
+    }];
+    
+    
 }
 
 

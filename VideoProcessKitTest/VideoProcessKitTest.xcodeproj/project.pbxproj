@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB0FBC71210F12FE00227D27 /* WaterMarkWithVPKCon.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0FBC6F210F12FE00227D27 /* WaterMarkWithVPKCon.m */; };
+		DB0FBC72210F12FE00227D27 /* WaterMarkWithVPKCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB0FBC70210F12FE00227D27 /* WaterMarkWithVPKCon.xib */; };
+		DB0FBC75210F14BD00227D27 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0FBC73210F14BD00227D27 /* CustomAlertView.m */; };
+		DB0FBC78210F150D00227D27 /* ImageTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0FBC77210F150D00227D27 /* ImageTitleButton.m */; };
 		DB3122F720E5E1CD00E26602 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3122F620E5E1CD00E26602 /* AppDelegate.m */; };
 		DB3122FA20E5E1CD00E26602 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3122F920E5E1CD00E26602 /* ViewController.m */; };
 		DB3122FD20E5E1CD00E26602 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB3122FB20E5E1CD00E26602 /* Main.storyboard */; };
@@ -119,6 +123,13 @@
 		1650BA95D4F4E096C646D058 /* libPods-VideoProcessKitTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VideoProcessKitTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AF7C55FB7609E2A8281FCB1 /* Pods-VideoProcessKitTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoProcessKitTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-VideoProcessKitTest/Pods-VideoProcessKitTest.release.xcconfig"; sourceTree = "<group>"; };
 		CA0CBCC7949CB3870EA8F474 /* Pods-VideoProcessKitTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoProcessKitTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VideoProcessKitTest/Pods-VideoProcessKitTest.debug.xcconfig"; sourceTree = "<group>"; };
+		DB0FBC6E210F12FE00227D27 /* WaterMarkWithVPKCon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterMarkWithVPKCon.h; sourceTree = "<group>"; };
+		DB0FBC6F210F12FE00227D27 /* WaterMarkWithVPKCon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterMarkWithVPKCon.m; sourceTree = "<group>"; };
+		DB0FBC70210F12FE00227D27 /* WaterMarkWithVPKCon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaterMarkWithVPKCon.xib; sourceTree = "<group>"; };
+		DB0FBC73210F14BD00227D27 /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomAlertView.m; path = VideoProcessKitTest/CustomAlertView.m; sourceTree = SOURCE_ROOT; };
+		DB0FBC74210F14BD00227D27 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomAlertView.h; path = VideoProcessKitTest/CustomAlertView.h; sourceTree = SOURCE_ROOT; };
+		DB0FBC76210F150D00227D27 /* ImageTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageTitleButton.h; path = "VideoProcessKitTest/归档/ImageTitleButton.h"; sourceTree = SOURCE_ROOT; };
+		DB0FBC77210F150D00227D27 /* ImageTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageTitleButton.m; path = "VideoProcessKitTest/归档/ImageTitleButton.m"; sourceTree = SOURCE_ROOT; };
 		DB3122F220E5E1CD00E26602 /* VideoProcessKitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoProcessKitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3122F520E5E1CD00E26602 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DB3122F620E5E1CD00E26602 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -350,6 +361,10 @@
 		DB31233220E60B9200E26602 /* demofolder */ = {
 			isa = PBXGroup;
 			children = (
+				DB0FBC76210F150D00227D27 /* ImageTitleButton.h */,
+				DB0FBC77210F150D00227D27 /* ImageTitleButton.m */,
+				DB0FBC74210F14BD00227D27 /* CustomAlertView.h */,
+				DB0FBC73210F14BD00227D27 /* CustomAlertView.m */,
 				DB7DBF082109613C00C5393F /* WaterMarkCon */,
 				DB31233320E60BD000E26602 /* SimpleCompositionCon.h */,
 				DB31233420E60BD000E26602 /* SimpleCompositionCon.m */,
@@ -412,6 +427,9 @@
 				DB7DBF312109CA9500C5393F /* AddLottieViewCon.h */,
 				DB7DBF322109CA9500C5393F /* AddLottieViewCon.m */,
 				DB7DBF332109CA9500C5393F /* AddLottieViewCon.xib */,
+				DB0FBC6E210F12FE00227D27 /* WaterMarkWithVPKCon.h */,
+				DB0FBC6F210F12FE00227D27 /* WaterMarkWithVPKCon.m */,
+				DB0FBC70210F12FE00227D27 /* WaterMarkWithVPKCon.xib */,
 			);
 			path = WaterMarkCon;
 			sourceTree = "<group>";
@@ -623,6 +641,7 @@
 				DB7DBF072108932100C5393F /* videoWatermarksCon.xib in Resources */,
 				DB7DBF1C2109752900C5393F /* layer.png in Resources */,
 				DB7DBF892109D0B100C5393F /* Comma.json in Resources */,
+				DB0FBC72210F12FE00227D27 /* WaterMarkWithVPKCon.xib in Resources */,
 				DB7DBF722109D0B000C5393F /* A.json in Resources */,
 				DB7DBF15210969DB00C5393F /* AddBorderCon.xib in Resources */,
 				DB7DBF8E2109D0B100C5393F /* B.json in Resources */,
@@ -731,10 +750,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB31233020E5EAFE00E26602 /* MainTableViewCell.m in Sources */,
+				DB0FBC71210F12FE00227D27 /* WaterMarkWithVPKCon.m in Sources */,
 				DB31232920E5E9CD00E26602 /* BaseTableViewCell.m in Sources */,
 				DB31233620E60BD000E26602 /* SimpleCompositionCon.m in Sources */,
 				DB7DBF062108932100C5393F /* videoWatermarksCon.m in Sources */,
 				DB7DBF14210969DB00C5393F /* AddBorderCon.m in Sources */,
+				DB0FBC78210F150D00227D27 /* ImageTitleButton.m in Sources */,
 				DB7DBF2A2109A37B00C5393F /* AddAnimationCon.m in Sources */,
 				DB7DBF0C2109617B00C5393F /* BaseWaterMarkCon.m in Sources */,
 				DB6FF88A20EA0F7D006956AE /* VPKCompositonManager.m in Sources */,
@@ -744,6 +765,7 @@
 				DB31230520E5E1D100E26602 /* main.m in Sources */,
 				DB31232C20E5EA4700E26602 /* BaseTableCell.m in Sources */,
 				DB3122F720E5E1CD00E26602 /* AppDelegate.m in Sources */,
+				DB0FBC75210F14BD00227D27 /* CustomAlertView.m in Sources */,
 				DB7DBF2521099D0B00C5393F /* AddTiltCon.m in Sources */,
 				DB7DBF342109CA9500C5393F /* AddLottieViewCon.m in Sources */,
 				DB31233F20E624DE00E26602 /* VPKFileManager.m in Sources */,
