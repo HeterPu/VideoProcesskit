@@ -12,7 +12,6 @@
 		DB0FBC72210F12FE00227D27 /* WaterMarkWithVPKCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB0FBC70210F12FE00227D27 /* WaterMarkWithVPKCon.xib */; };
 		DB0FBC75210F14BD00227D27 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0FBC73210F14BD00227D27 /* CustomAlertView.m */; };
 		DB0FBC78210F150D00227D27 /* ImageTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0FBC77210F150D00227D27 /* ImageTitleButton.m */; };
-		DB0FBC7A210F2BBB00227D27 /* 234.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DB0FBC79210F2BBB00227D27 /* 234.mp3 */; };
 		DB3122F720E5E1CD00E26602 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3122F620E5E1CD00E26602 /* AppDelegate.m */; };
 		DB3122FA20E5E1CD00E26602 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3122F920E5E1CD00E26602 /* ViewController.m */; };
 		DB3122FD20E5E1CD00E26602 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB3122FB20E5E1CD00E26602 /* Main.storyboard */; };
@@ -135,7 +134,6 @@
 		DB0FBC74210F14BD00227D27 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomAlertView.h; path = VideoProcessKitTest/CustomAlertView.h; sourceTree = SOURCE_ROOT; };
 		DB0FBC76210F150D00227D27 /* ImageTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageTitleButton.h; path = "VideoProcessKitTest/归档/ImageTitleButton.h"; sourceTree = SOURCE_ROOT; };
 		DB0FBC77210F150D00227D27 /* ImageTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageTitleButton.m; path = "VideoProcessKitTest/归档/ImageTitleButton.m"; sourceTree = SOURCE_ROOT; };
-		DB0FBC79210F2BBB00227D27 /* 234.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 234.mp3; sourceTree = "<group>"; };
 		DB3122F220E5E1CD00E26602 /* VideoProcessKitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoProcessKitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3122F520E5E1CD00E26602 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DB3122F620E5E1CD00E26602 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -320,7 +318,6 @@
 				DB7DBF1B2109752900C5393F /* layer.png */,
 				DB6FF89920EA48DF006956AE /* 123.mp3 */,
 				DB6FF89720EA47E6006956AE /* 123.MOV */,
-				DB0FBC79210F2BBB00227D27 /* 234.mp3 */,
 				DB6FF88F20EA3DB0006956AE /* MFwf6J.mp4 */,
 				DB6FF89020EA3DB0006956AE /* XnzwQF.mp4 */,
 				DB6FF89320EA46C2006956AE /* dVIlx3.mp4 */,
@@ -640,7 +637,6 @@
 				DB31233120E5EAFE00E26602 /* MainTableViewCell.xib in Resources */,
 				DB7DBF972109D0B100C5393F /* LottieLogo1.json in Resources */,
 				DB7DBF762109D0B000C5393F /* L.json in Resources */,
-				DB0FBC7A210F2BBB00227D27 /* 234.mp3 in Resources */,
 				DB7DBF9F2109D0B100C5393F /* timeremap.json in Resources */,
 				DB7DBF9E2109D0B100C5393F /* LottieLogo1_masked.json in Resources */,
 				DB7DBF842109D0B100C5393F /* D.json in Resources */,
