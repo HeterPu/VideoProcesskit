@@ -46,8 +46,8 @@
         // SET LAYER ...
     } progressBlock:^(CGFloat progress) {
         NSLog(@"current progress is %f",progress);
-    } complete:^(NSURL *fileUrl) {
-        NSLog(@"COMPLETE");
+    } complete:^(NSURL *fileUrl, NSString *errMsg) {
+        
     }];
     
     // Do any additional setup after loading the view from its nib.

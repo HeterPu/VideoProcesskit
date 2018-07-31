@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB00B232211035660020ABC7 /* VPKVideoEditTool.m in Sources */ = {isa = PBXBuildFile; fileRef = DB00B231211035660020ABC7 /* VPKVideoEditTool.m */; };
 		DB0FBC71210F12FE00227D27 /* WaterMarkWithVPKCon.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0FBC6F210F12FE00227D27 /* WaterMarkWithVPKCon.m */; };
 		DB0FBC72210F12FE00227D27 /* WaterMarkWithVPKCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB0FBC70210F12FE00227D27 /* WaterMarkWithVPKCon.xib */; };
 		DB0FBC75210F14BD00227D27 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0FBC73210F14BD00227D27 /* CustomAlertView.m */; };
 		DB0FBC78210F150D00227D27 /* ImageTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0FBC77210F150D00227D27 /* ImageTitleButton.m */; };
+		DB0FBC7A210F2BBB00227D27 /* 234.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DB0FBC79210F2BBB00227D27 /* 234.mp3 */; };
 		DB3122F720E5E1CD00E26602 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3122F620E5E1CD00E26602 /* AppDelegate.m */; };
 		DB3122FA20E5E1CD00E26602 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3122F920E5E1CD00E26602 /* ViewController.m */; };
 		DB3122FD20E5E1CD00E26602 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB3122FB20E5E1CD00E26602 /* Main.storyboard */; };
@@ -123,6 +125,9 @@
 		1650BA95D4F4E096C646D058 /* libPods-VideoProcessKitTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VideoProcessKitTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AF7C55FB7609E2A8281FCB1 /* Pods-VideoProcessKitTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoProcessKitTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-VideoProcessKitTest/Pods-VideoProcessKitTest.release.xcconfig"; sourceTree = "<group>"; };
 		CA0CBCC7949CB3870EA8F474 /* Pods-VideoProcessKitTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoProcessKitTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VideoProcessKitTest/Pods-VideoProcessKitTest.debug.xcconfig"; sourceTree = "<group>"; };
+		DB00B230211035660020ABC7 /* VPKVideoEditTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VPKVideoEditTool.h; sourceTree = "<group>"; };
+		DB00B231211035660020ABC7 /* VPKVideoEditTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VPKVideoEditTool.m; sourceTree = "<group>"; };
+		DB00B23321105E5E0020ABC7 /* VideoProcessKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoProcessKit.h; sourceTree = "<group>"; };
 		DB0FBC6E210F12FE00227D27 /* WaterMarkWithVPKCon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterMarkWithVPKCon.h; sourceTree = "<group>"; };
 		DB0FBC6F210F12FE00227D27 /* WaterMarkWithVPKCon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterMarkWithVPKCon.m; sourceTree = "<group>"; };
 		DB0FBC70210F12FE00227D27 /* WaterMarkWithVPKCon.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaterMarkWithVPKCon.xib; sourceTree = "<group>"; };
@@ -130,6 +135,7 @@
 		DB0FBC74210F14BD00227D27 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomAlertView.h; path = VideoProcessKitTest/CustomAlertView.h; sourceTree = SOURCE_ROOT; };
 		DB0FBC76210F150D00227D27 /* ImageTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageTitleButton.h; path = "VideoProcessKitTest/归档/ImageTitleButton.h"; sourceTree = SOURCE_ROOT; };
 		DB0FBC77210F150D00227D27 /* ImageTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageTitleButton.m; path = "VideoProcessKitTest/归档/ImageTitleButton.m"; sourceTree = SOURCE_ROOT; };
+		DB0FBC79210F2BBB00227D27 /* 234.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 234.mp3; sourceTree = "<group>"; };
 		DB3122F220E5E1CD00E26602 /* VideoProcessKitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoProcessKitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3122F520E5E1CD00E26602 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DB3122F620E5E1CD00E26602 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -314,6 +320,7 @@
 				DB7DBF1B2109752900C5393F /* layer.png */,
 				DB6FF89920EA48DF006956AE /* 123.mp3 */,
 				DB6FF89720EA47E6006956AE /* 123.MOV */,
+				DB0FBC79210F2BBB00227D27 /* 234.mp3 */,
 				DB6FF88F20EA3DB0006956AE /* MFwf6J.mp4 */,
 				DB6FF89020EA3DB0006956AE /* XnzwQF.mp4 */,
 				DB6FF89320EA46C2006956AE /* dVIlx3.mp4 */,
@@ -381,6 +388,7 @@
 			children = (
 				DB31234020E6250200E26602 /* cores */,
 				DB31233C20E624DD00E26602 /* utils */,
+				DB00B23321105E5E0020ABC7 /* VideoProcessKit.h */,
 			);
 			path = VideoProcessKit;
 			sourceTree = "<group>";
@@ -399,6 +407,8 @@
 			children = (
 				DB6FF88820EA0F7D006956AE /* VPKCompositonManager.h */,
 				DB6FF88920EA0F7D006956AE /* VPKCompositonManager.m */,
+				DB00B230211035660020ABC7 /* VPKVideoEditTool.h */,
+				DB00B231211035660020ABC7 /* VPKVideoEditTool.m */,
 			);
 			path = cores;
 			sourceTree = "<group>";
@@ -630,6 +640,7 @@
 				DB31233120E5EAFE00E26602 /* MainTableViewCell.xib in Resources */,
 				DB7DBF972109D0B100C5393F /* LottieLogo1.json in Resources */,
 				DB7DBF762109D0B000C5393F /* L.json in Resources */,
+				DB0FBC7A210F2BBB00227D27 /* 234.mp3 in Resources */,
 				DB7DBF9F2109D0B100C5393F /* timeremap.json in Resources */,
 				DB7DBF9E2109D0B100C5393F /* LottieLogo1_masked.json in Resources */,
 				DB7DBF842109D0B100C5393F /* D.json in Resources */,
@@ -765,6 +776,7 @@
 				DB31230520E5E1D100E26602 /* main.m in Sources */,
 				DB31232C20E5EA4700E26602 /* BaseTableCell.m in Sources */,
 				DB3122F720E5E1CD00E26602 /* AppDelegate.m in Sources */,
+				DB00B232211035660020ABC7 /* VPKVideoEditTool.m in Sources */,
 				DB0FBC75210F14BD00227D27 /* CustomAlertView.m in Sources */,
 				DB7DBF2521099D0B00C5393F /* AddTiltCon.m in Sources */,
 				DB7DBF342109CA9500C5393F /* AddLottieViewCon.m in Sources */,

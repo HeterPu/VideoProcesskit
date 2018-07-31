@@ -8,23 +8,35 @@
 
 #import "VPKCompositonManager.h"
 #import "VPKFileManager.h"
+#import "VPKVideoEditTool.h"
 #import <UIKit/UIKit.h>
 
 
 
 @interface VPKCompositonChannel()
 
+@property(nonatomic,assign) NSInteger channelId;
+@property(nonatomic,copy) AVMediaType mediaType;
+@property(nonatomic,assign)CMTimeRange range;
+@property(nonatomic,strong) NSURL *fileUrl;
+
+
 @end
 
 
 @implementation VPKCompositonChannel
 
--(instancetype)initWithChannelId:(NSInteger)channelId mediaType:(AVMediaType)type range:(CMTimeRange)range fileUrl:(NSURL *)fileUrl{
+
+
+-(instancetype)initWithChannelId:(NSInteger)channelId
+                       mediaType:(AVMediaType)type range:(CMTimeRange)range
+                         fileUrl:(NSURL *)fileUrl{
     self =  [super init];
     _channelId = channelId;
     _mediaType = type;
     _range = range;
     _fileUrl = fileUrl;
+    _startTime = kCMTimeZero;
     return self;
 }
 
@@ -88,7 +100,7 @@
         AVMutableCompositionTrack  *videoTrack = [self.composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid + i];
         AVMutableCompositionTrack  *audioTrack = [self.composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid + i];
         for (int i = 0; i < pipeChannel.count; i++) {
-            VPKCompositonChannel *channel = pipeChannel[pipeChannel.count - i - 1];
+            VPKCompositonChannel *channel = pipeChannel[i];
             AVURLAsset *fileAsset = [[AVURLAsset alloc] initWithURL:channel.fileUrl options:nil];
             CMTimeRange  fileTimeRange = [self fitTimeRange:channel.range avUrlAsset:fileAsset];
             if(CMTimeCompare(CMTimeAdd(fileTimeRange.start, fileTimeRange.duration),_maxTimeRange.duration)){
@@ -100,11 +112,12 @@
                 // 视频采集通道
                 AVAssetTrack *videoAssetTrack = [[fileAsset tracksWithMediaType:AVMediaTypeVideo] firstObject];
                 // 把采集轨道数据加入到可变轨道之中
-                [videoTrack insertTimeRange:fileTimeRange ofTrack:videoAssetTrack atTime:fileTimeRange.start error:nil];
+                CMTime startTime = channel.compositeType == VPKCompositonChannelTypePipe ? kCMTimeInvalid :channel.startTime;
+                [videoTrack insertTimeRange:fileTimeRange ofTrack:videoAssetTrack atTime:startTime error:nil];
                 // 音频采集通道
                 AVAssetTrack *audioAssetTrack = [[fileAsset tracksWithMediaType:AVMediaTypeAudio] firstObject];
                 // 加入合成轨道之中
-                [audioTrack insertTimeRange:fileTimeRange ofTrack:audioAssetTrack atTime:fileTimeRange.start error:nil];
+                [audioTrack insertTimeRange:fileTimeRange ofTrack:audioAssetTrack atTime:startTime error:nil];
             }
         }
      }
@@ -116,13 +129,14 @@
                 AVMutableCompositionTrack *audioTrack = [_composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid + 100 + i];
 //              audioTrack.preferredVolume =  0.04;
               for (int i = 0; i < pipeChannel.count; i++) {
-                  VPKCompositonChannel *channel = pipeChannel[pipeChannel.count - i - 1];
+                  VPKCompositonChannel *channel = pipeChannel[i];
                   if (channel.mediaType == AVMediaTypeAudio) {
                       AVURLAsset *fileAsset = [[AVURLAsset alloc] initWithURL:channel.fileUrl options:nil];
                       CMTimeRange  fileTimeRange = [self fitTimeRange:channel.range avUrlAsset:fileAsset];
                       AVAssetTrack *audioAssetTrack = [[fileAsset tracksWithMediaType:AVMediaTypeAudio] firstObject];
+                      CMTime startTime = channel.compositeType == VPKCompositonChannelTypePipe ? kCMTimeInvalid :channel.startTime;
                       // 把采集轨道数据加入到可变轨道之中
-                      [audioTrack insertTimeRange:fileTimeRange ofTrack:audioAssetTrack atTime:fileTimeRange.start error:nil];
+                      [audioTrack insertTimeRange:fileTimeRange ofTrack:audioAssetTrack atTime:startTime error:nil];
                   }
               }
           }
@@ -143,7 +157,7 @@
 - (void)composition:(AVMutableComposition *)avComposition
           storePath:(NSString *)storePath
       progressBlock:(VPK_Compos_Progress)progressBlock
-            success:(VPK_Compos_Success)successBlcok
+            success:(VPK_Compos_Success)successBlock
 {
     
     // 如果为音频默认输出为m4a格式,视频默认为MP4格式
@@ -184,8 +198,10 @@
                 break;
             case AVAssetExportSessionStatusCancelled:
                 NSLog(@"exporter Canceled");
+                 if(successBlock) successBlock(nil,@"exporter Canceled");
                 break;
             case AVAssetExportSessionStatusFailed:
+                 if(successBlock) successBlock(nil,@"exporter fail");
                 NSLog(@"%@", [NSString stringWithFormat:@"exporter Failed%@",assetExport.error.description]);
                 break;
             case AVAssetExportSessionStatusWaiting:
@@ -198,7 +214,7 @@
                 NSLog(@"exporter Completed");
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // 调用播放方法
-                    successBlcok([NSURL fileURLWithPath:storePath]);
+                    successBlock([NSURL fileURLWithPath:storePath],nil);
                 });
                 break;
         }
@@ -212,15 +228,8 @@
 - (CMTimeRange)fitTimeRange:(CMTimeRange)timeRange avUrlAsset:(AVURLAsset *)avUrlAsset
 {
     CMTimeRange fitTimeRange = timeRange;
-    
-    if (CMTimeCompare(avUrlAsset.duration,timeRange.duration))
-    {
-        fitTimeRange.duration = avUrlAsset.duration;
-    }
-    if (CMTimeCompare(timeRange.duration,kCMTimeZero))
-    {
-        fitTimeRange.duration = avUrlAsset.duration;
-    }
+    if (CMTIME_COMPARE_INLINE(avUrlAsset.duration, <=, timeRange.duration))fitTimeRange.duration = avUrlAsset.duration;
+    if (CMTIME_COMPARE_INLINE(timeRange.duration, <= ,kCMTimeZero))fitTimeRange.duration = avUrlAsset.duration;
     return fitTimeRange;
 }
 
@@ -247,6 +256,7 @@
     // 1 - Early exit if there's no video file selected
     if (!videoAsset) {
         NSLog(@"合成资源不存在");
+        if(successBlock) successBlock(nil,@"合成资源不存在");
         return;
     }
     
@@ -362,8 +372,10 @@
                 break;
                 case AVAssetExportSessionStatusCancelled:
                 NSLog(@"exporter Canceled");
+                if(successBlock) successBlock(nil,@"exporter Canceled");
                 break;
                 case AVAssetExportSessionStatusFailed:
+                if(successBlock) successBlock(nil,@"exporter fail");
                 NSLog(@"%@", [NSString stringWithFormat:@"exporter Failed%@",exporter.error.description]);
                 break;
                 case AVAssetExportSessionStatusWaiting:
@@ -376,17 +388,277 @@
                 NSLog(@"exporter Completed");
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // 调用播放方法
-                    if(successBlock)successBlock([NSURL fileURLWithPath:path]);
+                    if(successBlock)successBlock([NSURL fileURLWithPath:path],nil);
                 });
                 break;
         }
     }];
-    
-    
 }
 
 
 
+-(void)cropVideoWithFillUrl:(NSURL *)inputUrl
+                      begin:(NSTimeInterval)begin
+                        end:(NSTimeInterval)end
+                 outputPath:(NSString *)outputPath
+              progressBlock:(VPK_Compos_Progress)progressBlock
+                   complete:(VPK_Compos_Success)successBlock{
+    
+    if(end <= begin || !inputUrl) {
+        NSLog(@"输入文件为空或者开始时间小于结束时间");
+        if(successBlock) successBlock(nil,@"输入文件为空或者开始时间小于结束时间");
+        return;
+    }
+    
+    begin = begin <=0 ? 0 : begin;
+    // 获取视频资源
+    NSURL *videoURL  = inputUrl;
+    AVAsset *videoAsset = [AVAsset assetWithURL:videoURL];
+    // 视频总时长
+    NSTimeInterval videoDuration = CMTimeGetSeconds(videoAsset.duration);
+    end = end <= videoDuration ? end : videoDuration;
+    // 准备裁剪时间
+    NSTimeInterval duration = end-begin;
+    CMTimeRange range = CMTimeRangeMake(CMTimeMakeWithSeconds(begin, videoAsset.duration.timescale),
+                                        CMTimeMakeWithSeconds(duration, videoAsset.duration.timescale));
+    // 准备存储位置
+    if([[NSFileManager defaultManager] fileExistsAtPath:outputPath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:outputPath error:nil];
+    }
+    
+    // 设置导出参数
+    NSArray *presets = [AVAssetExportSession exportPresetsCompatibleWithAsset:videoAsset];
+    NSString *presetName = AVAssetExportPresetHighestQuality;
+    // 如果不支持高质量压缩, 就使用默认压缩的第一个
+    if (![presets containsObject:presetName]) {
+        presetName = presets.firstObject;
+    }
+    
+    
+    __block AVAssetExportSession *export = [[AVAssetExportSession alloc] initWithAsset:videoAsset
+                                                                            presetName:presetName];
+    // 获取导出格式
+    NSArray *supportFiles = export.supportedFileTypes;
+    AVFileType outputFileType = AVFileTypeMPEG4;
+    if(![supportFiles containsObject:outputFileType]) {
+        outputFileType = supportFiles.firstObject;
+    }
+    export.outputURL = [NSURL fileURLWithPath:outputPath];
+    export.outputFileType = outputFileType;
+    export.shouldOptimizeForNetworkUse = YES;
+    export.timeRange = range;
+    
+    
+    
+    __block NSTimer *timer = nil;
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.20 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        NSLog(@" 打印信息:%f",export.progress);
+        if (progressBlock) {
+            progressBlock(export.progress);
+        }
+    }];
+    
+    
+    NSLog(@"outputURL: %@\noutputFileType: %@\nstart.value: %lld\nstart.timescale:%d\nduration.value: %lld\nduration.timescale: %d",
+          export.outputURL,
+          export.outputFileType,
+          export.timeRange.start.value, export.timeRange.start.timescale,
+          export.timeRange.duration.value, export.timeRange.duration.timescale);
+    
+    
+    [export exportAsynchronouslyWithCompletionHandler:^{
+        
+        if (timer) {
+            [timer invalidate];
+            timer = nil;
+        }
+        
+        // 回到主线程
+        switch (export.status) {
+            case AVAssetExportSessionStatusUnknown:
+                NSLog(@"exporter Unknow");
+                break;
+            case AVAssetExportSessionStatusCancelled:
+                NSLog(@"exporter Canceled");
+                 if(successBlock) successBlock(nil,@"exporter Canceled");
+                break;
+            case AVAssetExportSessionStatusFailed:
+                 if(successBlock) successBlock(nil,@"exporter fail");
+                NSLog(@"%@", [NSString stringWithFormat:@"exporter Failed%@",export.error.description]);
+                break;
+            case AVAssetExportSessionStatusWaiting:
+                NSLog(@"exporter Waiting");
+                break;
+            case AVAssetExportSessionStatusExporting:
+                NSLog(@"exporter Exporting");
+                break;
+            case AVAssetExportSessionStatusCompleted:
+                NSLog(@"exporter Completed");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if(successBlock) successBlock([NSURL fileURLWithPath:outputPath],nil);
+                });
+                break;
+        }
+    }];
+}
+
+
+-(void)compressVideoAssetWithAssetUrl:(NSURL *)url outputPath:(NSString *)outputPath options:(NSDictionary *)options complete:(void (^)(NSError *))complete{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSError *error = nil;
+        AVAssetReader *reader = [VPKVideoEditTool readerWithAssetUrl:url error:&error];
+        AVAssetWriter *writer = [VPKVideoEditTool writerWithOutputPath:outputPath options:options error:&error];
+        if(error || !reader || !writer) {
+            NSLog(@"init reader or writer fail: %@", error);
+            if(complete)complete(error);
+            return ;
+        }
+        
+        __block   BOOL audioFinished = NO;
+        __block   BOOL videoFinished = NO;
+        
+        // 获取 input 和 output
+        AVAssetReaderTrackOutput *videoOutput = nil;
+        AVAssetReaderTrackOutput *audioOutput = nil;
+        AVAssetWriterInput *videoInput = nil;
+        AVAssetWriterInput *audioInput = nil;
+        
+        
+        // Create the serialization queue to use for reading and writing the video data.
+        
+        NSLog(@"the count of outputs is %li",reader.outputs.count);
+        for (AVAssetReaderTrackOutput *output in reader.outputs) {
+            if([output.mediaType isEqualToString:AVMediaTypeVideo]) {
+                videoOutput = output;
+                continue;
+            }
+            if([output.mediaType isEqualToString:AVMediaTypeAudio]) {
+                audioOutput = output;
+                continue;
+            }
+        }
+        
+        NSLog(@"the count of inputs is %li",reader.outputs.count);
+        
+        for (AVAssetWriterInput *input in writer.inputs) {
+            if ([input.mediaType isEqualToString:AVMediaTypeVideo]) {
+                videoInput = input;
+                continue;
+            }
+            if([input.mediaType isEqualToString:AVMediaTypeAudio]) {
+                audioInput = input;
+                continue;
+            }
+        }
+        if(!videoOutput && !audioOutput) {
+            NSLog(@"没有输出信息");
+            if (complete) {
+                error = [NSError errorWithDomain:@"ots.media.tool.err" code:1 userInfo:@{}];
+                complete(error);
+            }
+            return ;
+        }
+        if(!videoInput && !audioInput) {
+            NSLog(@"没有输入信息");
+            if (complete) {
+                error = [NSError errorWithDomain:@"ots.media.tool.err" code:1 userInfo:@{}];
+                complete(error);
+            }
+            return ;
+        }
+        
+        // 基础配置, 开始读取,开始写入
+        videoInput.transform = videoOutput.track.preferredTransform;
+        [reader startReading];
+        [writer startWriting];
+        [writer startSessionAtSourceTime:kCMTimeZero];
+        
+        dispatch_group_t dispatchGroup = dispatch_group_create();
+        // 循环写入音频
+        if (audioInput && audioOutput)
+        {
+            // 加入 Group, 循环写入音频
+            dispatch_group_enter(dispatchGroup);
+            [audioInput requestMediaDataWhenReadyOnQueue: dispatch_queue_create([@"audioDispatch" UTF8String], NULL) usingBlock:^{
+                if (audioFinished)return;
+                BOOL completedOrFailed = false;
+                while ([audioInput isReadyForMoreMediaData] && !completedOrFailed)
+                {
+                    // Get the next audio sample buffer, and append it to the output file.
+                    CMSampleBufferRef sampleBuffer = [audioOutput copyNextSampleBuffer];
+                    if (!sampleBuffer){
+                        completedOrFailed = YES;
+                        break;
+                    }
+                    BOOL success = true;
+                    success = [audioInput appendSampleBuffer:sampleBuffer];
+                    CFRelease(sampleBuffer);
+                    sampleBuffer = NULL;
+                    completedOrFailed = !success;
+                }
+                
+                
+                if (completedOrFailed)
+                {
+                    
+                    
+                    BOOL oldFinished = audioFinished;
+                    audioFinished = YES;
+                    if (oldFinished == NO)
+                    {
+                        [audioInput markAsFinished];
+                    }
+                    dispatch_group_leave(dispatchGroup);
+                }
+            }];
+        }
+        // 循环写入视频
+        if (videoInput && videoOutput)
+        {
+            
+            dispatch_group_enter(dispatchGroup);
+            [videoInput requestMediaDataWhenReadyOnQueue:dispatch_queue_create([@"videoDispatch" UTF8String], NULL)  usingBlock:^{
+                if (videoFinished) return;
+                BOOL completedOrFailed = NO;
+                while ([videoInput isReadyForMoreMediaData] && !completedOrFailed)
+                {
+                    CMSampleBufferRef sampleBuffer = [videoOutput copyNextSampleBuffer];
+                    if(!sampleBuffer) {
+                        completedOrFailed = YES;
+                        break;
+                    }
+                    BOOL success = true;
+                    success = [videoInput appendSampleBuffer:sampleBuffer];
+                    CFRelease(sampleBuffer);
+                    sampleBuffer = nil;
+                    completedOrFailed = !success;
+                }
+                if (completedOrFailed)
+                {
+                    
+                    BOOL oldFinished = videoFinished;
+                    videoFinished = YES;
+                    if (oldFinished == NO)
+                    {
+                        [videoInput markAsFinished];
+                    }
+                    dispatch_group_leave(dispatchGroup);
+                }
+            }];
+        }
+        // 导出文件
+        dispatch_group_notify(dispatchGroup, dispatch_queue_create([@"audioVideoMainDispatch" UTF8String], NULL), ^{
+            if(reader.error && complete) {
+                complete(reader.error);
+                return;
+            }
+            [writer finishWritingWithCompletionHandler:^{
+                if (complete) complete(writer.error);
+            }];
+        });
+    });
+}
 
 
 @end
