@@ -69,6 +69,10 @@
 @property(nonatomic,weak) AVAssetExportSession *innerExport;
 @property(nonatomic,copy) VPK_Compos_Progress innerProgressBlock;
 
+@property (strong, nonatomic) NSTimer *cropTimer;
+@property(nonatomic,weak) AVAssetExportSession *cropExport;
+@property(nonatomic,copy) VPK_Compos_Progress cropProgressBlock;
+
 @end
 
 
@@ -187,10 +191,9 @@
     // 优化
     assetExport.shouldOptimizeForNetworkUse = YES;
     _mixExport  = assetExport;
-    
-     _mixTimer = [NSTimer  timerWithTimeInterval:0.20 target:self selector:@selector(mixCompositionTimerCall) userInfo:nil repeats:YES];
-    
     __weak typeof(self) weakSelf = self;
+     _mixTimer = [NSTimer  scheduledTimerWithTimeInterval:0.20 target:weakSelf selector:@selector(mixCompositionTimerCall) userInfo:nil repeats:YES];
+    
     // 合成完毕
     [assetExport exportAsynchronouslyWithCompletionHandler:^{
         if (weakSelf.mixTimer) {
@@ -356,7 +359,7 @@
     exporter.videoComposition = mainCompositionInst;
     _innerExport  = exporter;
     
-    _innerTimer = [NSTimer  timerWithTimeInterval:0.20 target:self selector:@selector(innerCompositionTimerCall) userInfo:nil repeats:YES];
+    _innerTimer = [NSTimer  scheduledTimerWithTimeInterval:0.20 target:weakSelf selector:@selector(innerCompositionTimerCall) userInfo:nil repeats:YES];
     
     // 合成完毕
     [exporter exportAsynchronouslyWithCompletionHandler:^{
@@ -410,6 +413,12 @@
 }
 
 
+-(void)cropCompositionTimerCall{
+    if (_cropProgressBlock) {
+        self.cropProgressBlock(_cropExport.progress);
+    }
+}
+
 
 -(void)cropVideoWithFillUrl:(NSURL *)inputUrl
                       begin:(NSTimeInterval)begin
@@ -423,7 +432,7 @@
         if(successBlock) successBlock(nil,@"输入文件为空或者开始时间小于结束时间");
         return;
     }
-    
+    _cropProgressBlock = progressBlock;
     begin = begin <=0 ? 0 : begin;
     // 获取视频资源
     NSURL *videoURL  = inputUrl;
@@ -461,17 +470,12 @@
     export.outputFileType = outputFileType;
     export.shouldOptimizeForNetworkUse = YES;
     export.timeRange = range;
+    _cropExport = export;
     
     
+    __weak typeof(self) weakSelf = self;
     
-    __block NSTimer *timer = nil;
-    
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.20 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        NSLog(@" 打印信息:%f",export.progress);
-        if (progressBlock) {
-            progressBlock(export.progress);
-        }
-    }];
+    _cropTimer = [NSTimer  scheduledTimerWithTimeInterval:0.20 target:weakSelf selector:@selector(cropCompositionTimerCall) userInfo:nil repeats:YES];
     
     
     NSLog(@"outputURL: %@\noutputFileType: %@\nstart.value: %lld\nstart.timescale:%d\nduration.value: %lld\nduration.timescale: %d",
@@ -483,9 +487,9 @@
     
     [export exportAsynchronouslyWithCompletionHandler:^{
         
-        if (timer) {
-            [timer invalidate];
-            timer = nil;
+        if (weakSelf.cropTimer) {
+            [weakSelf.cropTimer invalidate];
+            weakSelf.cropTimer = nil;
         }
         
         // 回到主线程
