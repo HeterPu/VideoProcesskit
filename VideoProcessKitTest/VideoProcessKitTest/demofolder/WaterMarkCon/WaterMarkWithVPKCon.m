@@ -25,7 +25,7 @@
     
     VPKCompositonChannel *channel = [[VPKCompositonChannel alloc]initWithChannelId:0 mediaType:AVMediaTypeVideo range:kCMTimeRangeZero fileUrl:[NSURL fileURLWithPath:inputFile]];
     VPKCompositonManager *compositeManager = [[VPKCompositonManager alloc]init];
-    [compositeManager innnerCompositeWithChannel:channel outPutPath:outoutFile configuration:^(AVMutableVideoComposition *composition, CGSize videoSize) {
+    [compositeManager innerCompositeWithChannel:channel outPutPath:outoutFile configuration:^(AVMutableVideoComposition *composition, CGSize videoSize) {
         
         // SET BORDER
         UIImage *borderImage = [self imageWithColor:[UIColor cyanColor] rectSize: CGRectMake(0, 0, videoSize.width, videoSize.height)];

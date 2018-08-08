@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,7 +23,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User mannual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awg-UQ-Kjq">
-                    <rect key="frame" x="34" y="36" width="325" height="123"/>
+                    <rect key="frame" x="34" y="16" width="325" height="123"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="123" id="QV3-bB-Kxy"/>
                     </constraints>
@@ -36,14 +35,13 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Buv-gY-Tmd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4Pe-Vs-MNo"/>
-                <constraint firstItem="Buv-gY-Tmd" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="6bV-ZP-aaP"/>
-                <constraint firstItem="Buv-gY-Tmd" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="GE5-Ir-r2S"/>
-                <constraint firstItem="awg-UQ-Kjq" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="16" id="Olk-An-qCz"/>
-                <constraint firstItem="Buv-gY-Tmd" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" id="STv-YB-PIr"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="awg-UQ-Kjq" secondAttribute="trailing" constant="16" id="gaz-dK-KN8"/>
-                <constraint firstItem="awg-UQ-Kjq" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="34" id="hdz-7V-gwW"/>
+                <constraint firstItem="Buv-gY-Tmd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6bV-ZP-aaP"/>
+                <constraint firstItem="Buv-gY-Tmd" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="GE5-Ir-r2S"/>
+                <constraint firstItem="awg-UQ-Kjq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="Olk-An-qCz"/>
+                <constraint firstItem="Buv-gY-Tmd" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="STv-YB-PIr"/>
+                <constraint firstAttribute="trailing" secondItem="awg-UQ-Kjq" secondAttribute="trailing" constant="16" id="gaz-dK-KN8"/>
+                <constraint firstItem="awg-UQ-Kjq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="34" id="hdz-7V-gwW"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
     </objects>

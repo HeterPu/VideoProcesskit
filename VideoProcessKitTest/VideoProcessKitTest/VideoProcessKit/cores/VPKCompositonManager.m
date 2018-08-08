@@ -21,6 +21,7 @@
 @property(nonatomic,strong) NSURL *fileUrl;
 
 
+
 @end
 
 
@@ -57,6 +58,16 @@
  标识是否为纯音频合成
  */
 @property(nonatomic,assign) BOOL isPureAudioComposite;
+
+
+@property (strong, nonatomic) NSTimer *mixTimer;
+@property(nonatomic,weak) AVAssetExportSession *mixExport;
+@property(nonatomic,copy) VPK_Compos_Progress mixProgressBlock;
+
+
+@property (strong, nonatomic) NSTimer *innerTimer;
+@property(nonatomic,weak) AVAssetExportSession *innerExport;
+@property(nonatomic,copy) VPK_Compos_Progress innerProgressBlock;
 
 @end
 
@@ -160,6 +171,7 @@
             success:(VPK_Compos_Success)successBlock
 {
     
+    _mixProgressBlock = progressBlock;
     // 如果为音频默认输出为m4a格式,视频默认为MP4格式
     NSString *exportType  = self.presetName;
     if(!exportType)exportType = _isPureAudioComposite ? AVAssetExportPresetAppleM4A : AVAssetExportPresetHighestQuality;
@@ -174,22 +186,16 @@
     assetExport.outputURL = [NSURL fileURLWithPath:storePath];
     // 优化
     assetExport.shouldOptimizeForNetworkUse = YES;
+    _mixExport  = assetExport;
     
-    __block NSTimer *timer = nil;
+     _mixTimer = [NSTimer  timerWithTimeInterval:0.20 target:self selector:@selector(mixCompositionTimerCall) userInfo:nil repeats:YES];
     
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.20 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        NSLog(@" 打印信息:%f",assetExport.progress);
-        if (progressBlock) {
-            progressBlock(assetExport.progress);
-        }
-    }];
-    
-    
+    __weak typeof(self) weakSelf = self;
     // 合成完毕
     [assetExport exportAsynchronouslyWithCompletionHandler:^{
-        if (timer) {
-            [timer invalidate];
-            timer = nil;
+        if (weakSelf.mixTimer) {
+            [weakSelf.mixTimer invalidate];
+            weakSelf.mixTimer = nil;
         }
         // 回到主线程
         switch (assetExport.status) {
@@ -244,7 +250,7 @@
 
 
 
--(void)innnerCompositeWithChannel:(VPKCompositonChannel *)singleChannel
+-(void)innerCompositeWithChannel:(VPKCompositonChannel *)singleChannel
                        outPutPath:(NSString *)path
                     configuration:(VPK_Inner_Compos_Config)configuration
                     progressBlock:(VPK_Compos_Progress)progressBlock
@@ -259,7 +265,7 @@
         if(successBlock) successBlock(nil,@"合成资源不存在");
         return;
     }
-    
+    _innerProgressBlock = progressBlock;
     // 2 - Create AVMutableComposition object. This object will hold your AVMutableCompositionTrack instances.
     AVMutableComposition *mixComposition = [[AVMutableComposition alloc] init];
     
@@ -332,7 +338,7 @@
     
     
     __weak typeof(AVMutableVideoComposition) *weakComposition = mainCompositionInst;
-    
+    __weak typeof(self) weakSelf = self;
     // 配置动画参数
     if(configuration){
         configuration(weakComposition,naturalSize);
@@ -348,22 +354,15 @@
     exporter.outputFileType = AVFileTypeQuickTimeMovie;
     exporter.shouldOptimizeForNetworkUse = YES;
     exporter.videoComposition = mainCompositionInst;
+    _innerExport  = exporter;
     
-
-    __block NSTimer *timer = nil;
-    
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.20 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        NSLog(@" 打印信息:%f",exporter.progress);
-        if (progressBlock) {
-            progressBlock(exporter.progress);
-        }
-    }];
+    _innerTimer = [NSTimer  timerWithTimeInterval:0.20 target:self selector:@selector(innerCompositionTimerCall) userInfo:nil repeats:YES];
     
     // 合成完毕
     [exporter exportAsynchronouslyWithCompletionHandler:^{
-        if (timer) {
-            [timer invalidate];
-            timer = nil;
+        if (weakSelf.innerTimer) {
+            [weakSelf.innerTimer invalidate];
+            weakSelf.innerTimer = nil;
         }
         // 回到主线程
         switch (exporter.status) {
@@ -393,6 +392,21 @@
                 break;
         }
     }];
+}
+
+
+
+-(void)mixCompositionTimerCall{
+    if (_mixProgressBlock) {
+        self.mixProgressBlock(_mixExport.progress);
+    }
+}
+
+
+-(void)innerCompositionTimerCall{
+    if (_innerProgressBlock) {
+        self.innerProgressBlock(_innerExport.progress);
+    }
 }
 
 

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "VideoProcessKit"
-  s.version      = "1.0"
+  s.version      = "1.1"
   s.ios.deployment_target = '8.0'
   s.summary      = "Video and Audio Process"
   s.homepage     = "https://github.com/HeterPu/VideoProcessKit"

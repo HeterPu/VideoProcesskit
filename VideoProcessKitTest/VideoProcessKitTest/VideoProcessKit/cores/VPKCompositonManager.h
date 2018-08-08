@@ -133,7 +133,7 @@ typedef NS_ENUM(NSInteger,VPKCompositonChannelType){
  @param progressBlock composition progress
  @param successBlock composition success
  */
--(void)innnerCompositeWithChannel:(VPKCompositonChannel *)singleChannel
+-(void)innerCompositeWithChannel:(VPKCompositonChannel *)singleChannel
                        outPutPath:(NSString *)outputPath
                     configuration:(VPK_Inner_Compos_Config)configration
                     progressBlock:(VPK_Compos_Progress)progressBlock
