@@ -234,4 +234,9 @@
     return date;
 }
 
+
++(NSString *)getPathFromFileUrlString:(NSString *)fileUrlString{
+    return [NSString stringWithUTF8String:[NSURL URLWithString:fileUrlString].fileSystemRepresentation];
+}
+
 @end

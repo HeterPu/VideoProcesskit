@@ -188,4 +188,12 @@
 + (NSString *)getFileChangeDateWithPath:(NSString *)path;
 
 
+/**
+ 获取文件Url的路径地址
+ @param fileUrlString 文件字符串
+ @return 文件的路径
+ */
++ (NSString *)getPathFromFileUrlString:(NSString *)fileUrlString;
+
+
 @end
