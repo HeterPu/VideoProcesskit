@@ -304,18 +304,22 @@
     if (videoTransform.a == 0 && videoTransform.b == 1.0 && videoTransform.c == -1.0 && videoTransform.d == 0) {
         videoAssetOrientation_ = UIImageOrientationRight;
         isVideoAssetPortrait_ = YES;
+        videoTransform.tx = videoAssetTrack.naturalSize.height;
     }
     if (videoTransform.a == 0 && videoTransform.b == -1.0 && videoTransform.c == 1.0 && videoTransform.d == 0) {
         videoAssetOrientation_ =  UIImageOrientationLeft;
         isVideoAssetPortrait_ = YES;
+        videoTransform.ty = videoAssetTrack.naturalSize.width;
     }
     if (videoTransform.a == 1.0 && videoTransform.b == 0 && videoTransform.c == 0 && videoTransform.d == 1.0) {
         videoAssetOrientation_ =  UIImageOrientationUp;
     }
     if (videoTransform.a == -1.0 && videoTransform.b == 0 && videoTransform.c == 0 && videoTransform.d == -1.0) {
         videoAssetOrientation_ = UIImageOrientationDown;
+        videoTransform.tx =  videoAssetTrack.naturalSize.width;
+        videoTransform.ty =  videoAssetTrack.naturalSize.height;
     }
-    [videolayerInstruction setTransform:videoAssetTrack.preferredTransform atTime:kCMTimeZero];
+    [videolayerInstruction setTransform:videoTransform atTime:kCMTimeZero];
     [videolayerInstruction setOpacity:0.0 atTime:videoAsset.duration];
     
     // 3.3 - Add instructions
